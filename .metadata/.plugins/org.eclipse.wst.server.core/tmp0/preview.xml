@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<server port="8080">
+  <module context="web_project" name="web project" path="C:/Users/Bryan/Eclipse Workspaces/E-10B Workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/web project" type="static"/>
+</server>

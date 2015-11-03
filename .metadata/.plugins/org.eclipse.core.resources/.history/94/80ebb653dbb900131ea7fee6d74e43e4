@@ -1,0 +1,11 @@
+import javax.swing.*;
+	
+public class Age {
+
+	public static void main(String [] args){
+		int userAge = JOptionPane.showInputDialog (null, "What's your age, cowboy?");
+		
+
+	}
+
+}

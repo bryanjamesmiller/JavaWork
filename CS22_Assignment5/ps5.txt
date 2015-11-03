@@ -1,0 +1,505 @@
+1.a.)    Original:
+             10
+         /         \
+       46           25
+      /  \          /  \
+     18   32      30   55
+    /
+  65
+
+First sift:  start with parent of the last element which = (8-2)/2=3, a[3]=18
+
+After first sift:
+            10
+         /        \
+       46          25
+     /  \         /  \
+    65  32      30   55
+   /
+ 18
+
+Sift down all elements to the left of a[3].  Sift down a[2]=25.  After second sift:
+
+             10
+         /        \
+       46          55
+     /  \         /  \
+    65  32      30   25
+  /
+18
+
+Sift down all elements to the left of a[2].  Sift down a[1]=46.  After third sift:
+
+             10
+         /        \
+       65           55
+     /  \          /  \
+    46  32       30   25
+  /
+18
+            
+Sift down all elements to the left of a[1].  Sift down a[0]=10.   After fourth and final sift:
+
+             65
+         /        \
+       46          55
+     /  \         /  \
+    18  32       30   25
+  /
+10
+
+1.b.)  Array representation of the above finished heap:
+
+{65, 46, 55, 18, 32, 30, 25, 10}
+
+1.c.)  Initial heap:
+
+            65
+         /        \
+     46            55
+     /  \          /  \
+   18   32       30   25
+  /
+10
+
+Remove the 65 and put it after the new heap's array is complete:
+
+             55
+         /        \
+      46            30
+     /  \          /  \
+    18  32       10  25
+
+New array after first iteration of while loop:
+{55, 46, 30, 18, 32, 10, 25, 65}
+
+Remove the 55 and put it after new heap's array is complete (but before the 65):
+
+             46
+         /        \
+       32         30
+      /  \       /  
+     18  25    10  
+
+New array after second iteration of while loop:  {46, 32, 30, 18, 25, 10, 55, 65}
+
+Remove the 46 and put it after new heap's array is complete (but before the 55):
+
+             32
+         /        \
+       25         30
+      /  \          
+     18  10
+
+New array after third iteration of while loop:  {32, 25, 30, 18, 10, 46, 55, 65}
+
+Remove the 32 and put it after new heap's array is complete (but before the 46):
+
+              30
+          /        \
+        25         10
+      /       
+    18 
+
+New array after fourth iteration of while loop:  {30, 25, 10, 18, 32, 46, 55, 65}
+
+Remove the 30 and put it after new heap's array is complete (but before the 32):
+
+              25
+          /        \
+        18          10
+
+New array after fifth iteration of while loop:  {25, 18, 10, 30, 32, 46, 55, 65}
+
+Remove the 25 and put it after new heap's array is complete (but before the 30):
+
+             18
+           /        
+        10 
+
+New array after sixth iteration of while loop:  {18, 10, 25, 30, 32, 46, 55, 65}
+
+Remove the 18 and put it after new heap's array is complete (but before the 25):
+
+     10 
+
+New array after 7th iteration of while loop:  {10, 18, 25, 30, 32, 46, 55, 65}
+
+Remove the 10 from the top of the heap and put it after new heap's array is complete 
+(but before the 18), which results in the fully sorted new array after 8th iteration 
+of the while loop:  {10, 18, 25, 30, 32, 46, 55, 65}
+
+2.a.)  the, my, an, by, do, we, if, to, go
+
+Here's just the Hashing:
+The - 3
+My - 2
+An - 2
+By - 2
+Do - 2
+We - 2
+If - 2
+To - 2
+Go - 2
+
+Table:
+0.  If
+1.  To
+2.  My
+3.  The
+4.  An
+5.  By
+6.  Do
+7.  We
+
+Using linear probing, the key "go" causes overflow.  The table above shows what it looks like at that point.
+
+2.b.)  Quadratic probing:
+
+Here's just the Hashing:
+The - 3
+My - 2
+An - 2 taken, so try 2+1 taken, so 2+4
+By - 2 taken, 2+1 taken, 2+4 taken, so wraparound (2+9)%8=3 taken, so (2+16)%8=2 taken, so (2+25)%8=3, taken, so
+ (2+36)%8=6, taken, so 2+49 mod 8 is 3, taken, so 2+64 mod 8 is 2, which is takenand we've now 
+tried n attempts so there's an infinite loop and we're at overflow at this point
+Do - 2
+We - 2
+If - 2
+To - 2
+Go - 2
+
+Table:
+0.
+1.  
+2.  My
+3.  The
+4.  By
+5.  
+6.  An
+7.
+
+The above table is what it looks like when overflow occurs.
+
+2.c.)  Double hashing:
+
+Here's just the hashing:
+The - 3
+My - 2
+An - 2+3=5
+By - 2+4=6
+Do - 2+2=4
+We - 2+1+1+1+1+1=7
+If - 2+4+4=10 mod 8 is 2, taken, +4 is 6, taken, +4 is 10, so it's stuck in a cycle and it overflows here
+To - 2
+Go - 2
+     
+Table:
+0.
+1.  
+2.  My
+3.  The
+4.  Do
+5.  An
+6.  By
+7.  We
+
+The above table is what it looks like when overflow occurs.
+
+3.a.)  The priorities that "Greedy Search" would assign to the following states are as follows.
+
+Sum of Manhattan distances = sum of each tile's horizontal distance + vertical distance to its goal = h(x)
+
+Priority of state x, p(x) = -1 * h(x)
+
+State A:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four and five have MDs of 0
+The one has a MD of 3
+The 7 has a MD of 0
+The three has a MD of 3
+The sum of the MDs = 2+1+3+3+3 = 12
+Thus p(x)= -12
+
+State B:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four has a MD of 0
+The five has a MD of 1
+The one has a MD of 3
+The 7 has a MD of 0
+The three has a MD of 3
+The sum of the MDs = 2+1+3+1+3+3 = 13
+Thus p(x)= -13
+
+State D:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four has a MD of 0
+The five has a MD of 1
+The one has a MD of 3
+The 7 has a MD of 0
+The three has a MD of 2
+The sum of the MDs = 2+1+3+1+3+2 = 12
+Thus p(x)= -12
+
+State H:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four has a MD of 0
+The five has a MD of 1
+The one has a MD of 3
+The 7 has a MD of 1
+The three has a MD of 2
+The sum of the MDs = 2+1+3+1+3+1+2 = 13
+Thus p(x)= -13
+
+3.b.). Using the same h(x) with A* the following priorities would result:
+State A:  g(x)=0 
++ h(x)=12
+=> p(x) = -12
+
+State B:  g(x)=1
++ h(x)=13
+=> p(x) = -14
+
+State D: g(x)=2
++ h(x)=12
+=> p(x) = -14
+
+State H: g(x)=3
++ h(x)=13
+=> p(x) = -16
+
+4.a.)  Since it's an array, we know each node put on the tree will be filled in order from 
+top to down, left to right, with no gaps.
+
+	public static boolean isHeapTree(arr [], int i)
+	{
+		if((arr.length - i) >= 3) //if there's at least a parent node with 
+			//two children at this tree/subtree
+		{
+			if(arr[i] < arr[2 * i + 1])  //if the left child is larger than a parent, 
+				//return false since it's not a heap
+				return false;
+			if(arr[i] < arr[2 * i + 2])  //if the right child is larger than a parent, 
+				//return false since it's not a heap
+				return false;
+			else if((arr.length - i) == 3) //if there are no more subtrees we need to consider, 
+				//and it passed the above conditions, this tree is a heap, so return true.
+			{
+				return true;
+			}
+			else //if there are more than three nodes, 
+				//make a recursive call on the next node
+				isHeapTree(arr[], i + 1)
+		}
+
+		if((arr.length - i) == 2) //if there's a parent node with one 
+			//child at this tree/subtree
+		{
+			if(arr[i] < arr[2 * i + 1])  //if the only child is larger than a parent, 
+				//return false since it's not a heap
+				return false;
+		}
+		else // We've reached the end of the tree and it's a heap since
+			// it passed the above conditions
+			return true;
+	}
+
+4.b.)  In terms of efficiency, the best case is when the first child node is greater than 
+the first parent node, because the test will detect it 
+in just 2 comparisons (one of the outer "if" statements and 
+then the first inner "if" statement) and return false regardless of what size n the array is.  
+Thus, the best case is a constant time efficiency of O(1).
+
+The worst case efficiency is O(n) when the tree is a heap or when only the very last 
+parent has a child that is greater than the parent, since either way every single n
+ecessary comparison must run.  
+
+The worst case will be 2*(n -1) or 2*(n -2) comparisons since each parent is 
+compared in 2 if statements, and since the children of the final parent don't 
+get tested (since they are leaves, they have no children to compare with), 
+so that is why it's n-1 or n-2 for one or two children for the 
+last 2 (1 parent and 1 child) or 3 nodes (1 parent and 2 children).  
+In any case, since every necessary comparison must run, it's a function of n, 
+and thus the efficiency will be O(n) in the worst case.
+
+The average case will be when a child node is greater than its parent somewhere 
+inbetween the first and last possible comparison.  This will also be O(n) efficiency
+ because in reality the average will likely be some fraction of n, such as 
+if the first child greater than its parent is found on average at 1/2*n.  
+This is still a number that is proportional to n, so the 
+efficiency would be O(n) in the average case, too.
+
+
+5.a.). Breadth-first results in:
+Atlanta, St. Louis, Washington, Denver, New York, Boston, L.A., Seattle
+
+5.b.)  Atlanta->St. Louis->Boston
+
+5.c.)  Depth-first results in:
+Atlanta, St. Louis, Washington, New York, Boston, Denver, L.A., Seattle
+
+5.d.). Atlanta->St. Louis->Washington->New York->Boston
+
+6.)  Here is the MST:
+(Atlanta, St. Louis)
+(Atlanta, Washington)
+(Washington, New York)
+(New York, Boston)
+(St. Louis, Denver)
+(Denver, L.A.)
+(L.A., Seattle)
+
+7.a.).  Order in which the cities are finalized and the minimum distance to each:
+Here is the entire table:
+Atlanta,    0 (finalized),
+St. Louis,  Infinite,  500 (finalized), 
+Washington, Infinite,  650,        650 (finalized)
+New York,   Infinite,  Infinite,   1400,      900 (finalized) 
+Boston,     Infinite,  Infinite,   1500,      1500,     1100 (finalized)
+Denver,     Infinite,  Infinite,   1290,      1290,     1290,     1290 (finalized)
+L.A.,       Infinite,  Infinite,   2100,      2100,     2100,     2100,   2090 (finalized)
+Seattle,    Infinite,  Infinite,   Infinite,  Infinite, Infinite, 3040,   3040,  2290 (finalized)
+
+
+7.b.)  Final shortest path from Atlanta to Boston:
+  Atlanta -> Washington -> New York -> Boston
+
+I believe there is just one temporary path:
+Atlanta -> St. Louis -> Boston
+
+
+8.  For this question, I am using a generic binary tree as described in the lecture notes (that is balanced).
+
+For requirement #1, a search tree does not allow for one to retrieve product records by specifying the 
+name of the product, but a hash table does provided that a hashing function related to the name of the 
+product is used, such as a weighted sum of its Unicode values.  
+
+For requirement #2, again, a search tree does not allow for one to retrieve product records by specifying
+ the first several letters in the name of the product, but a hash table does provided that a hashing 
+function related to the characters of the key such as a weighted sum of its Unicode values.
+
+For requirement #3, according to the lecture notes, "With good choices of hash function and table size,
+ complexity is generally better than O(log n) and approaches O(1)".  This is more efficient than a 
+search tree, which has an average efficiency of O(h) where h is the height of the tree.  A balanced 
+tree has a height of log n, so it's average efficiency is O(log n).  Thus a hash table is again the 
+better choice.
+
+For requirement #4, adding items without taking the system offline, a binary search tree is better 
+because you can just add the new items to the leafs of the tree, and as long as it's a linked list 
+implementation, there is no size limit constraint from a software perspective.  Adding items to a 
+hash table requires the possibility of overflow, so the hash table might need to get increased in 
+size at some point, which will require taking the system off line.  
+
+Overall, a hash table meets 3/4 of the requirements better than the binary tree, so I would recommend a hash table.
+
+
+9.a.)  No, this is not a DAG.  Here are the cycles:  
+c->d->b->c
+c->d->f->c
+
+9.b.)  Yes, this is a DAG.  Here is one topographical sort:
+d->c->a->b->e->f
+
+10).  Non-recursive dfTrav:
+
+   	private static void dfTrav(Vertex v) 
+	{
+		System.out.println(v.id);
+		v.done = true;
+		Edge e = v.edges;
+		Stack<Vertex> myStack = new LLStack<Vertex>();
+		myStack.insert(v); //we want a stack so once we reach a leaf vertex,
+		// we can get the most recently visited parent vertex,
+		//and try to visit another path down to another leaf vertex.
+
+		while(!myStack.isEmpty())
+		{
+
+			while (e != null) 
+			{
+				//Find the first available vertex in the adjacency list 
+				Vertex w = e.end;
+
+				//if the first available vertex in the adjacency list has not been visited, 
+				//visit it and get its adjacency list
+				if(w.done == false)
+				{
+					System.out.println(w.id);
+					w.done = true; //mark the new vertex as visited             
+					myStack.insert(w); //add this vertex to the stack
+					Edge e = w.edges;  //get the new adjacency list from the newly visited vertex
+				}
+
+				//Otherwise, if that vertex has been visited, 
+				// try the next edge in the adjacency list.  
+				//If it doesn't have another edge, then e
+				//will be set to null, and the inner while loop will quit.
+				else if(w.done == true) 
+					e = e.next;
+			}
+
+			//If the inner while loop quit, then all the edges from the 
+			//adjacency list from the vertex it was considering have 
+			//been tested, and all connected vertices have been visited, 
+			//so move to the next parent vertex in the stack until there are no more, 
+			//at which time v will be set to null and the outer loop will exit.
+			Vertex v = myStack.remove(); 
+			Edge e = v.edges;
+		}
+	}
+
+
+11.a.)  
+	public boolean isAdjacent(Vertex v1, Vertex v2)
+	{
+		Edge e1 = v1.edges;
+		Edge e2 = v2.edges;
+
+		while(e1 != null)
+		{
+			if(e1.end == v1)
+				return true;
+			else
+				e1 = e1.next;
+		}
+
+		while(e2 != null)
+		{
+			if(e2.end == v1)
+				return true;
+			else
+				e2 = e2.next;
+		}
+		return false;
+	}
+
+11.b.). The time efficiency would be proportionate to the number of edges belonging to the first vertex plus 
+the total number of edges belonging to the second vertex, since some proportion of these combined edges are 
+cycled through in my method above.  A vertex can have at most n-1 nodes, and we may have to go through both 
+vertices' set of nodes.  This results in a worst-case efficiency of O(2*(n-1)), which is proportional to n, 
+and so the efficiency would be O(n).
+
+11.c.). One modification that would improve efficiency is if the vertices included a field containing the 
+number of edges the vertex had.  Then, especially in a non-directional graph, if we start with the vertex 
+with fewer edges, we will more quickly arrive at a shared edge.  In that case the efficiency would be O(n-1) 
+in the worst case, which is still O(n) but a better one than in part b.) above
+
+12.)  The edges of the MST in the order in which Kruskal's algorithm would add them is as follows:
+(Boston, New York)
+(Washington, New York)
+(St. Louis, Atlanta)
+(Washington, Atlanta)
+(St. Louis, Denver)
+(L.A., Denver)
+(L.A., Seattle)
+
+
+

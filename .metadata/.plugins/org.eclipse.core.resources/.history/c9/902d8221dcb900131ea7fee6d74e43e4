@@ -1,0 +1,15 @@
+import javax.swing.*;
+	
+public class Age {
+
+	public static void main(String [] args){
+		String ageString = JOptionPane.showInputDialog (null, "What's your age, cowboy?");
+		int age= Integer.parseInt(ageString);
+		if(age<40)
+			System.out.println("You're young.");
+		else
+			System.out.println("You're old.");
+
+	}
+
+}

@@ -1,0 +1,141 @@
+Bryan Miller
+Bryanjamesmiller@fas.harvard.edu
+
+1. a)
+public void printOddsRecursive(IntNode str)
+{
+	if(str == null)
+		return;
+	
+	if(str.val % 2 != 0)
+		System.out.println(str.val);
+	
+	printOddsRecursive(str.next);  
+	
+	return; 
+}
+
+1. b)
+public void printOddsIterative(IntNode str)
+{
+	while(str != null)
+	{
+		if(str.val % 2 != 0)
+			System.out.println(str.val);
+		str = str.next;
+	}
+}
+
+
+2.  a)  The worst-case efficiency is where the inner-loop "if" statement is evaluated to be true every time.
+This will cause both operations (getItem and addItem) to run in the inner loop and 
+one operation to run in the outer loop.  However, all three of these operations have an efficiency of
+O(sizeOfList) every time they are used.  Thus, the outer-loop getItem has an efficiency of m*O(m).  The
+inner loop getItem has an efficiency of m*(n*O(n)).  Also, addItem will have an efficiency of m*O(m) since 
+it adds all duplicates that are found in list 1 and since in the worst case the "if" statement is run every time.  This 
+results in O(m*(n*O(n)+m*O(m))) time efficiency, which will be roughly equal to O(n^3) assuming the worst case.
+
+2.  b)
+public static LLList intersect(LLList list1, LLList list2)
+{
+	LLList inters = new LLList();       
+        ListIterator iter1 = list1.iterator();
+
+        while (iter1.hasNext()) 
+	{
+        	Object item1 = iter1.next();
+
+	        ListIterator iter2 = list2.iterator();
+		while (iter2.hasNext())
+		{
+			Object item2 = iter2.next();
+        		if (item1.equals(item2))
+			{
+				inters.item = item1;
+				inters = inters.next;
+				break;
+       			}
+		}
+        }
+        return inters;
+} 
+
+2.  c)  The main reason why my method in part b) is more efficient is because hasNext() is a much more efficient
+method and only traverses the linked list list1 once to get a new item in the outer loop, compared with getItem, 
+which traverses the entire linked list every time it is called.  The worst case for my method in part b) is
+when every item in list1 matches the last item in list2 every time.  This means the inner loop will have to 
+cycle all the way to the last item of list2 every time.  However, even in the worst case the efficiency has improved
+to O(m*(n+2m)), which will be roughly equal to O(n^2), since at worst the inner loop will have n cycles for every outer loop cycle.
+The 2m comes from the fact that in the worst case, the "if" statement is going to run and its two arguments will thus
+run m times each.
+
+3.
+public static DoubleNode removeAllOccurrences(DoubleNode str, char ch)
+{
+	if (str == null)
+		throw new IllegalArgumentException("string is empty");
+
+	DoubleNode tempStr=str; //save the pointer to the whole list and update it if the first 
+				// (or first however many) items that match ch and get deleted
+		
+	while(str != null)
+	{
+		if (str.ch == ch && str.prev == null)   // If the first node has the ch we're looking 
+							// to delete, delete it by:
+		{
+			str.next.prev = null;  //Take out the next node's "prev" reference to it
+			tempStr = str.next;  // Skip it out and make the reference point to the new first item in the list
+		}
+		else if (str.ch == ch) //If it's not the first node and it has the ch we're looking to delete, delete it by:
+		{
+			str.prev.next = str.next;
+			str.next.prev = str.prev;
+		}			
+		str = str.next;  			
+	}
+	return tempStr;  //Return the pointer to the list
+}
+
+4.
+public static boolean isPalindrome(String str)
+{
+	if(str == null)
+		throw new IllegalArgumentException("string is null");
+	if(str.length() == 1)
+		return true;
+
+	LLStack<Character> myStack = new LLStack<Character>();
+
+	Boolean myTest = false;
+	if(str.length() % 2 == 0)
+	{
+		for(int i = 0; i < str.length()/2; i++)
+		{
+			Character myChar = str.charAt(i);
+			myStack.push(myChar);
+		}
+		for(int i = str.length() / 2; i < str.length(); i++)
+		{
+			Character myChar = str.charAt(i);
+			if(myChar != myStack.pop())
+			{	
+				return false;
+			}
+		}
+	}
+	else
+	{
+		for(int i = 0; i < str.length()/2; i++)
+		{
+			Character myChar = str.charAt(i);
+			myStack.push(myChar);
+		}
+		for(int i = str.length() / 2 + 1; i < str.length(); i++)
+		{
+			Character myChar = str.charAt(i);
+			if(myChar != myStack.pop())
+				return false;
+		}
+	}
+	return true;
+}

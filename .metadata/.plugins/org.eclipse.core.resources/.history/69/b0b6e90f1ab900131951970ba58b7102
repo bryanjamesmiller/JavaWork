@@ -1,0 +1,11 @@
+import javax.swing.JFrame;
+
+public class Sandbox
+{
+   public static void main(String args[])
+   {
+      JFrame frame = new JFrame("Frame Demo");
+      frame.setSize (500, 300);
+      frame.setVisible (true);
+   }
+}

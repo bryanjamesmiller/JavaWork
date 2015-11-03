@@ -1,0 +1,23 @@
+Debugging by putting in your own System.out.println("Outer loop i=" + i); type stuff!
+
+At the start of each public method, you should check the method parameters 
+for all possible error conditions (eg., a null reference, an out-of-range int), 
+and throw an appropriate exception. You do not need to worry about catching 
+the exceptions you throw or gracefully recovering from errors - just make sure 
+to detect them.  Example:  
+public ArrayBag(int maxSize) {
+	if (maxSize <= 0)
+		throw new IllegalArgumentException("maxSize must be > 0");
+}
+
+Important note: In your work on this and subsequent problem sets, you should 
+not use any of Java's built-in collection classes (e.g., ArrayList) or utility classes 
+(e.g., Arrays), unless a problem explicitly states that you may do so.
+
+If you have questions while working on this assignment, please come to office hours, 
+post them on Piazza, or email cscie22@fas.harvard.edu.
+
+Answers to Part I problems should typically be submitted as plain-text files, with no 
+formatting of any kind. However, because we are asking you to draw a diagram, you 
+may submit either a plain-text file or a PDF file. Give it the name ps1_partI.txt
+or ps1_partI.pdf, and put your name and email address at the top of the file.

@@ -1,0 +1,112 @@
+Bryan Miller
+Bryanjamesmiller@fas.harvard.edu
+
+1.  Given this array:  10 18 4 24 33 40 8 3 12
+
+A.  What will it be after Selection Sort after the second pass:
+3, 4, 18, 24, 33, 40, 8, 10, 12
+
+B.  Insertion Sort after the fourth iteration of the outer loop:
+4, 10, 18, 24, 33, 40, 8, 3, 12
+
+C.  Shell sort after the initial phase of the algorithm, while the increment is 3:
+8, 3, 4, 10, 18, 12, 24, 33, 40
+
+D.  Bubble sort after the third pass:
+4, 10, 18, 8, 3, 12, 24, 33, 40
+
+E.  QuickSort in lecture's initial partitioning phase:
+10, 18, 4, 24, 12, 3, 8, 40, 33
+
+F.  Radix sort after the initial pass:
+10 40 | 12 | 33 3 | 4 24 | 18 8
+
+G.  After the fourth call to the merge method of MergeSort as presented in lecture:
+3 4 8 10 12 18 24 33 40
+
+
+2.  Given an already sorted array of 5 elements, how many comparisons of array elements would each of the following algorithms perform?
+Explain each answer briefly.
+
+a. insertion sort = 4 comparisons.  Insertion sort only needs to compare the ith element to the i-1 element once,
+and it does not need to do any more comparisons than that if the array is already sorted.  It takes
+4 comparisons to compare the ith element to the i-1 element in an array of size 5.  Here are the indexes that get compared:
+1 to 0
+2 to 1
+3 to 2
+4 to 3
+which results in a total of 4 comparisons.  This is also seen by the formula C(n)=n-1
+
+b. bubble sort = 10 comparisons.  On the first pass, bubble sort compares all elements 
+regardless of whether or not it's already sorted, which for an array size of 5 is 4 comparisons.  
+Then it knows that the largest element is in the last index position, so it no longer needs 
+to compare that one.  Thus, it has one less comparison to make every subsequent iteration.
+For array size 5, 4 passes are needed, so (first pass=)4 + (second pass=)3 + (etc.)2 + 1 = 10 total comparisons.  This can also be seen by the formula C(n)=(n^2)/2-n/2
+
+c. quicksort - Partitioning an array requires approximately n=5 comparisons.  It is approximate because it depends on the choice of the pivot.  In an already sorted array, every element would still get compared to the pivot value each time a recursive call is made.  
+
+In the best case where the pivot is a middle value, log (base 2) of n is the number of recursive calls (or partitions) that have to be made.  The average case as well results in log (base 2) of n recursive calls (or partitions).  Thus, 4 recursive calls are required, and an array of size 5 results in a total of approximately 5*4=20 comparisons results.  
+
+In the worst case, the pivot is always the smallest or largest element, which would result in n^2 recursive calls.  In that case, there could be 5*5*4 comparisons.  However, I am assuming we want to use the code provided in class for this question, so in that case (and in the average scenario of a carefully picked pivot) we will have a total of 20 comparisons.
+
+
+ 
+a.)  What is the worst-case time efficiency of algorithm A in terms of the length n of the array in big-O notation?  Explain:
+With no duplicates and array sizes of:
+1 is 0 comparisons
+2 is 1 comparison
+3 is 3 comparisons
+4 is 6 comparisons
+5 is 10 comparisons
+6 is 15
+7 is 21
+
+With duplicates, and array sizes of 
+1 is 0 comparisons
+2 is 1 comparison
+3 is 2 comparisons
+4 is 3 comparisons
+5 is 4 comparisons
+
+Thus the worst case efficiency is when there are no duplicates.  In that case, the relationship between the size n of the array and the number of comparisons is C(n)=(n-1)n/2 which is quadratic growth, thus the efficiency is O(n^2).
+
+b.)  What is the worst-case time efficiency of algorithm B in terms of the length n of the array in big-O notation?  Explain:
+Mergsort always has (even in the worst case) a M(n)= 2n*log (base 2) n and a C(n) that is proportional to that, and thus it is O( n log n).  Then we have to add on the additional comparisons from the program, which are proportional to n (even in the worst case); however, n + n log n still results in n log n.  The worst case efficiency is thus going to be O( n log n).
+
+a.)
+The number of times the equals line (mathematical move) runs for each n are as follows:
+n=1 has 1 mathematical move
+n=2 has 3  mathematical move
+n=3 has 6 mathematical move
+n=4 has 10 mathematical move
+n=5 has 15 mathematical move
+This exact formula is M(n)=n(n+1)/2
+
+b.)
+The time efficiency is O(n^2), which is quadratic.  This is because the M(n) when multiplied out has a largest value of n^2 in it, since the factor of 1/2 can be disregarded, as well as the smaller value of n/2.
+
+c.)
+Here is my alternate implementation of the method:
+
+public static void myGenerateSums(int n) 
+{
+for(int i=1; i<n; i++)
+	{
+		System.out.println(i*(i+1)/2);
+	}
+
+	int sum=n*(n+1)/2;
+	System.out.println(sum);
+}
+
+d.)  The time efficiency of my method as a function of n is O(n), which is constant time.  This is because there is only 2 mathematical moves per n that need to be made.   
+
+
+ Stable and unstable sorting.  Here is my input array with two elements whose order will be reversed by SelectionSort:  {5, 1b, 1a}
+After the first iteration of SelectionSort, this array becomes:  {1b, 5, 1a} because SelectionSort finds 1b and considers it to be the lowest possible value and swaps it with the first location.
+After the second iteration of SelectionSort, this array becomes:  {1b, 1a, 5}
+because SelectionSort finds 1b and considers it to be the second possible lowest value and swaps it with the second location.
+
+ 
+
+

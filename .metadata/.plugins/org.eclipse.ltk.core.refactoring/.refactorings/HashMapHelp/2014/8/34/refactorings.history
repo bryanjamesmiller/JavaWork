@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;HashMapHelper.java&apos; to &apos;HelperHashMap/src&apos;&#x0D;&#x0A;- Original project: &apos;HashMapHelp&apos;&#x0D;&#x0A;- Destination element: &apos;HelperHashMap/src&apos;&#x0D;&#x0A;- Original element: &apos;HashMapHelper.java&apos;" description="Copy compilation unit" destination="=HelperHashMap/src" element1="/src&lt;{HashMapHelper.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1408830857112" units="1" version="1.0"/>
+</session>

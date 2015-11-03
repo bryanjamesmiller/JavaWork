@@ -1,0 +1,13 @@
+
+public class Pen {
+
+	public static void main(String [] args)
+	{
+		int inputLength=args.length;
+		for(int i=0; i<inputLength; i++)
+		{
+			System.out.println("args[inputLength-i]");
+		}
+	}
+	
+}

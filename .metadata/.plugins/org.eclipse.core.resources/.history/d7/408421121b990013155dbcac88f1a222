@@ -1,0 +1,16 @@
+//BarCode.java
+
+/** 
+ *  This class takes a 5-digit ZIP code as input, and prints
+ *  the bar code using the symbol | for a full bar and : for a half bar. Your program
+ *  should also be able to take a bar code as input and print the corresponding 5-
+ *  digit ZIP code.
+ *  
+ * @author    Bryan Miller
+ * @version   Last modified on 2/10/2014
+ **/
+public class BarCode 
+{
+
+
+}

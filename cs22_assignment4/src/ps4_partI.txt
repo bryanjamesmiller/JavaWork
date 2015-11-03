@@ -1,0 +1,219 @@
+Bryan Miller
+Bryanjamesmiller@fas.harvard.edu
+
+1.a). The first four states of BFS with items written out in array form from left to right, top to bottom:
+[120345678]
+[125340678]
+[102345678]
+[125348670]
+
+1.b)
+[120345678]
+[125340678]
+[125348670]
+[125348607]
+
+1.c).  BFS would find it because it would only have to consider 7 nodes to get the solution.
+
+DFS would not find it because there are more than 10 nodes it would have to consider before reaching the solution.
+
+Iterative-deepening would find it only if the depth were set to level 2.  This is because if it were more than 2 it would have to consider more than 10 nodes, and if it were less than 2 it would not even consider the solution.
+
+2.  a.). There will be N operations performed in either the best or worst case.  
+This is because each node is going to do 1 calculation in adding count to the 
+recursive call, plus it is also going to do one comparison to T in the inequality 
+for each node.  This would result in 2 processes per node which means O(n) time efficiency.
+
+2.b.)  //Using the same wrapper method
+
+public int numKeysSmaller(root, int T) 
+{
+int count = 0;
+
+// checks to see if we've gone off
+// the bottom of the tree
+if (root == null)
+  return 0;
+
+// checks to see if the key is too big.  If so, try going left
+else if (root.key >= T)
+   return searchTree(root.left, T);
+
+// after going left a number of recursive calls later, we will finally get to a point
+// where keys are < T and then we will start keeping track of how many there are.
+else 
+{      
+     count  += searchTree(root.left, T);    
+     count += searchTree(root.right, T);
+}
+
+if(root.key < T)
+     return count + 1;
+else
+     return count;
+}
+
+2.c.)
+The worst case will still be O(n) because every key will be less than T and thus have every node processed anyways.  The best case will be O(1) constant time because there would be no keys less than T and thus no operations performed.
+
+
+
+3.a.)
+                  W
+               /     \
+            I            R
+             \         /     \
+             N       O        F
+           /          \      /  \
+         E             M    P    T
+                                                    
+                                                  
+3.b.)
+                  T
+            /          \
+         R              B
+       /                  \
+      M                    O
+    /   \                    \
+   E     S                    N
+                           /    \
+                          V      Y
+                          
+                          
+
+4.a.)  
+Here's an intermediate step:
+      80
+  /         \
+A           50
+30         /    \
+           C      28
+                    /    \
+                 L          15
+                13         /   \
+                           O     F
+                           6      9
+
+
+Here's the final Huffman tree result:
+      Root
+ 0 /         \ 1
+A               Node
+           0   /    \   1
+             C          Node
+                   0   /     \  1
+                      L         Node
+                           0   /   \ 1
+                              O     F
+                              
+4.b.)  "focal" would encode to 11111110100110
+
+
+5.a.)    37, 26, 13, 35, 30, 42, 56, 47, 70
+
+5.b.)   13, 30, 35, 26, 47, 70, 56, 42, 37
+
+5.c.)
+            37
+        /       \
+      26         42
+    /    \          \
+   13     35         56
+   /      /        /    \
+ 10      30      47      70
+                  \
+                   50
+
+
+5.d.)
+                 42
+            /          \
+           30            56
+        /     \       /     \
+      13      35     47     70
+
+
+5.e.)  Yes, the original tree is balanced because each nodes subtree's have the same height or a height with a difference of 1. 
+                              
+                            
+6.a.)  Before first split:
+       J
+     /
+  E H I 
+
+After 1st split:
+      HJ
+    /     |
+  E       I
+
+
+Before the 2nd split:
+       HJ
+    /     |
+CEF       I
+
+Still during the 2nd split:
+        EHJ
+    /  |   |
+  C    F   I
+
+After 3rd split:
+            H
+         /      \ 
+      E          J
+    /   \        /
+  C      F      I
+
+Before 4th split:
+            H
+         /      \ 
+      E           J
+    /   \        /
+  BC    FG       I
+
+After 4th split:
+              H
+         /         \ 
+      CE               J
+   /  |    \          /
+  B    D   FG       I
+
+Final state:
+              H
+         /         \ 
+        CE           J
+   /    |   \       /
+AB      D   FG     I
+
+
+6.b.). Order 2 means you have to have 
+at least 2 keys per node and at most 4
+and at most 5 children edges per node.
+
+Before 1st split:
+EHIJ
+
+After 1st split:
+      H
+     /   \
+   CE     IJ
+
+Before 2nd split:
+         H
+      /       \
+     BCEF     IJ
+
+After 2nd split:
+          EH
+    /      |       \
+    BC     FG     IJ
+
+Final state:
+             EH
+    /        |       \
+  ABCD       FG      IJ
+
+                              
+                          
+                          
+                          

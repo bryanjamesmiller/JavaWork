@@ -1,0 +1,59 @@
+import java.util.*;
+public class Sandbox {
+
+	enum ShipEngine {STEAM_ENGINE, STEAM_TURBINE, GAS_TURBINE, DIESEL, 
+		ELECTRIC, WIND, HUMAN_FORCE};
+
+		public static void main(String [] args){
+			myMethodWithVariableArguments("One", "Two", "Three");
+		}
+		public static void myMethodWithVariableArguments(String ... myOneArrayParameterForVariableArguments)
+		{
+			for(int i=0; i<myOneArrayParameterForVariableArguments.length; i++)
+				System.out.println(myOneArrayParameterForVariableArguments[i]);
+		}
+}
+
+
+
+/*		String myString="hello world";
+		System.out.println(myString.sta)
+
+		ShipEngine engineType= ShipEngine.STEAM_ENGINE;
+		if(engineType==ShipEngine.STEAM_ENGINE)
+			System.out.println("We have a match!");
+
+		Integer myInt;
+		int number=5;
+		myInt=number;
+		int[] myArray=new int[5];
+		int[] myArray2=new int[5];
+
+		System.out.println(myArray.equals(myArray));
+		System.out.println(Arrays.equals(myArray, myArray2));
+		Arrays.fill(myArray, 0);
+		int[] myArray3={1, 3, 3, 4, myInt};
+		System.out.println(Arrays.binarySearch(myArray3, myInt));
+
+		Scanner myInput=new Scanner(System.in);
+		myInput.useDelimiter(",");
+		System.out.println("Enter something:  ");
+		System.out.println(myInput.next());
+		System.out.println(myInput.next());
+	}
+	/*public static double power (double x, int n)
+	{
+		if (n == 0) return 1.0;
+
+		while(n%2==0)
+		{
+			n=n/2;
+			x=x*x;
+		}
+
+		if (n > 0) 
+		{
+			return x * power(x, n-1);
+		}
+		else return 1.0 / power(x, -n);
+	}*/
